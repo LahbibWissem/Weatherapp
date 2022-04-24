@@ -5,6 +5,7 @@ import de.jellydaxs.weatherapp.DAO.Entities.Weather;
 import de.jellydaxs.weatherapp.DAO.Repository.DayRepository;
 import de.jellydaxs.weatherapp.DAO.Repository.WeatherRepository;
 import de.jellydaxs.weatherapp.Service.Interface.WeatherService;
+import org.hibernate.annotations.OrderBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public Weather getWeatherByCityName(String cityName) {
+
         return weatherRepository.findWeatherByCityName(cityName);
     }
 
@@ -43,5 +45,10 @@ public class WeatherServiceImpl implements WeatherService {
        dayRepository.save(d);
        w.getDays().add(d);
        weatherRepository.save(w);
+    }
+
+    @Override
+    public int countAllWeathers() {
+        return weatherRepository.countAll();
     }
 }

@@ -11,4 +11,5 @@ public interface WeatherService {
     Weather addWeather(Weather weather);
     void deleteWeatherById(Long id);
     void addDayToWeather(Weather w , Day d);
+    int countAllWeathers();
 }

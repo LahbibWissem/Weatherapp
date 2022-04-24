@@ -8,22 +8,25 @@ import javax.persistence.Id;
 @Entity
 public class Day {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
 
-    private int num;
+    private String dayName;
 
     private String type;
 
     private String iconName;
 
+    private int num;
+
     public Day() {
     }
 
-    public Day(Long id, int num, String type, String iconName) {
-        this.num = num;
+    public Day(Long id, String dayName, String type, String iconName,int num) {
+        this.dayName = dayName;
         this.type = type;
         this.iconName = iconName;
+        this.num=num;
     }
 
     public Long getId() {
@@ -34,12 +37,12 @@ public class Day {
         this.id = id;
     }
 
-    public int getNum() {
-        return num;
+    public String getDayName() {
+        return dayName;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
     }
 
     public String getType() {
@@ -56,5 +59,13 @@ public class Day {
 
     public void setIconName(String iconName) {
         this.iconName = iconName;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class WeatherRestController {
     @Autowired
@@ -18,6 +18,11 @@ public class WeatherRestController {
     @GetMapping("/getAll")
     public List<Weather> getAll(){
         return weatherService.getAll();
+    }
+    // URL : http://localhost:8081/getCount
+    @GetMapping("/getCount")
+    public int getCount(){
+        return weatherService.countAllWeathers();
     }
 
 
@@ -32,8 +37,10 @@ public class WeatherRestController {
 
     // URL : http://localhost:8081/getWeatherByCityName/El Alia
     @GetMapping("getWeatherByCityName/{cityName}")
-    public Weather getWeatherByCityName(@PathVariable("cityName") String cityName) {
-        return weatherService.getWeatherByCityName(cityName);
+    public int getWeatherByCityName(@PathVariable("cityName") String cityName) {
+        if(weatherService.getWeatherByCityName(cityName) == null)
+            return 0;
+        return 1;
     }
 
 
